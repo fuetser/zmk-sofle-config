@@ -6,6 +6,11 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
+#define BASE 0
+#define PLAIN 1
+#define SYMBOLS 2
+#define NAVIGATION 3
+
 / {
     behaviors {
         hml: home_row_mod_left {
@@ -37,7 +42,20 @@
                 &kp TAB   &kp Q    &kp W         &kp E         &kp R          &kp T                                  &kp Y    &kp U          &kp I          &kp O          &kp P          &kp LBRC
                 &kp LCTRL &hml LGUI A &hml LALT S  &hml LCTRL D    &hml LSHFT F    &kp G                                  &kp H    &hmr RSHFT J    &hmr RCTRL K    &hmr RALT L     &hmr RGUI SEMI  &kp RBRC
                 &kp LSHFT &kp Z    &kp X         &kp C         &kp V          &kp B          &kp C_MUTE  &none     &kp N    &kp M          &kp COMMA      &kp DOT        &kp FSLH       &kp SQT
-                                     &kp LALT     &kp LALT      &kp LGUI       &lt 2 TAB       &lt 1 SPACE   &lt 1 RET    &lt 2 DEL      &kp DEL        &kp LCTRL      &kp LSHFT
+                                     &kp LALT     &kp LALT      &kp LGUI       &lt NAVIGATION TAB       &lt SYMBOLS SPACE   &lt SYMBOLS RET    &lt NAVIGATION DEL      &kp DEL        &kp LCTRL      &tog PLAIN
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
+        };
+
+        plain_layer {
+            display-name = "plain";
+            // Transparent keys inherit base; eight home-row mods are overridden.
+            bindings = <
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &kp A  &kp S  &kp D  &kp F  &trans  &trans  &kp J  &kp K  &kp L  &kp SEMI  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
         };
