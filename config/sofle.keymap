@@ -1,7 +1,7 @@
-/* Sofle layout reconstructed from ZMK Studio screenshots.
- * macOS profile; home-row mod tap assignments confirmed by owner.
- * Symbols punctuation remains subject to host layout verification.
- * Home row mod-taps use tap-preferred to prevent cross-hand roll misfires.
+/* Sofle 58 layout.md + existing Sofle hardware (60 positions).
+ * Layer 0 Base with cross-hand-safe home-row mods; layer 1 Plain.
+ * Layers 2/3 Symbols and Navigation have precedence over Plain.
+ * Two center key positions are maintained from the previous firmware.
  */
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -34,28 +34,26 @@
     };
     keymap {
         compatible = "zmk,keymap";
-
-        default_layer {
+        base_layer {
             display-name = "base";
             bindings = <
-                &kp ESC   &kp N1   &kp N2        &kp N3        &kp N4         &kp N5                                 &kp N6   &kp N7         &kp N8         &kp N9         &kp N0         &kp EQUAL
-                &kp TAB   &kp Q    &kp W         &kp E         &kp R          &kp T                                  &kp Y    &kp U          &kp I          &kp O          &kp P          &kp LBRC
-                &kp LCTRL &hml LGUI A &hml LALT S  &hml LCTRL D    &hml LSHFT F    &kp G                                  &kp H    &hmr RSHFT J    &hmr RCTRL K    &hmr RALT L     &hmr RGUI SEMI  &kp RBRC
-                &kp LSHFT &kp Z    &kp X         &kp C         &kp V          &kp B          &kp C_MUTE  &none     &kp N    &kp M          &kp COMMA      &kp DOT        &kp FSLH       &kp SQT
-                                     &kp LALT     &kp LALT      &kp LGUI       &lt NAVIGATION TAB       &lt SYMBOLS SPACE   &lt SYMBOLS RET    &lt NAVIGATION DEL      &kp DEL        &kp LCTRL      &tog PLAIN
+                &kp ESC &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp EQUAL
+                &kp TAB &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P &kp LBKT
+                &kp LCTRL &hml LGUI A &hml LALT S &hml LCTRL D &hml LSHFT F &kp G &kp H &hmr RSHFT J &hmr RCTRL K &hmr RALT L &hmr RGUI SEMI &kp RBKT
+                &kp LSHFT &kp Z &kp X &kp C &kp V &kp B &kp C_MUTE &none &kp N &kp M &kp COMMA &kp DOT &kp FSLH &kp SQT
+                &kp LALT &kp LALT &kp LGUI &lt NAVIGATION TAB &lt SYMBOLS SPACE &lt SYMBOLS RET &lt NAVIGATION DEL &kp BSPC &kp LCTRL &tog PLAIN
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
         };
 
         plain_layer {
             display-name = "plain";
-            // Transparent keys inherit base; eight home-row mods are overridden.
             bindings = <
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &kp A  &kp S  &kp D  &kp F  &trans  &trans  &kp J  &kp K  &kp L  &kp SEMI  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &kp A &kp S &kp D &kp F &trans &trans &kp J &kp K &kp L &kp SEMI &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
         };
@@ -63,11 +61,11 @@
         symbols_layer {
             display-name = "symbols";
             bindings = <
-                &kp F12  &kp F1    &kp F2       &kp F3       &kp F4       &kp F5                               &kp F6    &kp F7      &kp F8    &kp F9     &kp F10     &kp F11
-                &trans   &kp N1    &kp N2       &kp N3       &kp N4       &kp N5                               &kp N6    &kp EQUAL   &kp MINUS &kp FSLH   &kp SEMI    &trans
-                &trans   &kp SQT   &kp SQT      &kp N9       &kp N0       &kp LBRC                             &kp RBRC  &kp MINUS   &kp EQUAL &kp N8     &kp SEMI    &kp N7
-                &trans   &trans    &kp N7       &kp BSLH     &kp BSLH     &kp COMMA    &kp C_PLAY_PAUSE &none     &kp DOT &kp LBRC &kp RBRC &kp GRAVE &kp GRAVE &trans
-                                    &trans      &trans       &trans       &trans          &trans         &trans   &trans       &trans      &trans      &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp PLUS &kp MINUS &kp FSLH &kp SEMI &trans
+                &trans &kp SQT &kp DQT &kp LPAR &kp RPAR &kp LBRC &kp RBRC &kp UNDER &kp EQUAL &kp STAR &kp COLON &trans
+                &trans &trans &kp AMPS &kp BSLH &kp PIPE &kp LT &trans &trans &kp GT &kp LBKT &kp RBKT &kp GRAVE &kp TILDE &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
         };
@@ -75,13 +73,14 @@
         navigation_layer {
             display-name = "navigation";
             bindings = <
-                &trans   &trans    &trans      &trans      &trans       &trans                               &trans  &trans     &trans     &trans     &trans        &trans
-                &trans   &kp INS   &kp PSCRN   &kp K_CMENU &trans &trans                              &trans  &trans     &trans     &trans     &trans        &trans
-                &trans   &kp HOME  &kp PG_UP   &kp PG_DN   &kp END      &kp CAPSLOCK                              &trans  &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT     &kp BSLH
-                &trans   &kp LG(Z) &kp LG(X)   &kp LG(C)  &kp LG(V)  &trans     &trans         &trans     &trans  &trans     &trans     &trans     &kp BSLH      &trans
-                                   &trans      &trans      &trans       &trans     &trans         &trans     &trans  &trans     &trans  &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &kp F12 &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11
+                &kp TAB &kp HOME &kp PG_UP &kp PG_DN &kp END &kp INS &kp DEL &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp BSPC
+                &kp LG(Z) &kp LG(LS(Z)) &kp C_PREV &kp C_NEXT &kp C_STOP &kp K_MENU &trans &trans &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP &kp PSCRN
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
         };
+
     };
 };
